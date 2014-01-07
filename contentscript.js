@@ -10,6 +10,7 @@ var tabId;
 
 var iframeId = 'research_sidebar';
 var WIDTH = '300px';
+var sidebarFILE = 'sidebar/sidebar.html';
 
 //set sidebar to current state as soon as page loads
 window.onload = function(){
@@ -90,7 +91,7 @@ function load_sidebar() {
 	html.style.width = html.clientWidth - parseFloat(WIDTH) + 'px';
 	
 	var div = document.createElement("div");
-	div.innerHTML = '<iframe id="'+iframeId+'" scrolling="no" frameborder="0" allowtransparency="false" '+'style="position: fixed; width: '+WIDTH+';border:none;z-index: 2147483647; height: 100%; top: 0px; right: 0px; bottom: 0px; background-color: black;"></iframe>';
+	div.innerHTML = '<iframe id="'+iframeId+'" src="'+chrome.extension.getURL(sidebarFILE)+'" frameborder="0" allowtransparency="false" '+'style="position: fixed; overflow:hidden; width: '+WIDTH+';border:none;z-index: 2147483647; height: 100%; top: 0px; right: 0px; bottom: 0px; background-color: black;"></iframe>';
 	html.appendChild(div.firstChild);
 	
 }

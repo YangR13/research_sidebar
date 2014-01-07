@@ -18,5 +18,8 @@
 	],
 	
 	"web_accessible_resources": [
+		"sidebar/sidebar.html",
+		"sidebar/sidebar_script.js",
+		"sidebar/sidebar_style.css"
 	]
 }
