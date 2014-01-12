@@ -9,7 +9,7 @@ html{
 #note_section{
 	position:relative;
 	max-height:calc(100% - 45px);
-	overflow-y:scroll;
+	overflow-y:auto;
 }
 #add_note_button{
 	font-size:20px;
@@ -64,6 +64,7 @@ html{
 	font-size:15px;
 	border-style:none;
 	overflow:hidden;
+	outline:none;
 }
 .note_break{
 	margin:0px;
@@ -75,11 +76,10 @@ html{
 	color:white;
 	font-size:12px;
 	background-color:#BD1550;
-	height:30px;
-	border-top-style:solid;
+	height:40px;
 	border-bottom-style:solid;
 	border-width:1px;
-	border-color:black;
+	border-color:lightgrey;
 	padding:4px;
 	display:none;
 }
@@ -89,17 +89,22 @@ html{
 	resize:none;
 	width:calc(100% - 4px);
 	margin:2px;
+	padding:2px;
+	font-family: 'Lucida Grande';
 	font-size:12px;
 	border-style:none;
 	border-style-top:solid;
 	border-width:1px;
 	overflow:hidden;
+	outline:none;
 }
 .note_ghost{
-	min-height:50px;
+	min-height:calc(50px - 4px);
 	white-space:pre-wrap;
-	width:calc(100% - 4px);
+	width:calc(100% - 8px);
 	margin:2px;
+	padding:2px;
+	font-family: 'Lucida Grande';
 	font-size:12px;
-	display:block;
+	word-wrap:break-word;
 }

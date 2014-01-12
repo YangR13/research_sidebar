@@ -1,3 +1,11 @@
+//listens for messages
+window.addEventListener("message", function(event){
+	if(event.data.action == "send_URL")
+		send_URL();
+	if(event.data.action == "load_URL")
+		window.location.href = event.data.URL;
+});
+
 //listens for "button_pushed" message from listener in background.js
 chrome.runtime.onMessage.addListener(function(msg, sender) {
 	if(msg == "button_pushed"){
@@ -18,8 +26,9 @@ window.onload = function(){
 	chrome.runtime.sendMessage("request_id", function(response) {
   		tabId = response.id;
   		console.log("tabId: "+response.id);
+  		set_sidebar();
 	});
-	set_sidebar();
+	
 }
 
 //resizes html when window is resized
@@ -32,6 +41,11 @@ window.onresize = function() {
 	});
 }
 
+function send_URL(){
+	var sidebar_window = document.getElementById(iframeId).contentWindow;
+	sidebar_window.postMessage({URL: window.location.href}, "*");
+	console.log("SENDING URL");
+}
 
 //toggles state of sidebar between ACTIVE and INACTIVE
 function toggle_state() {
@@ -58,7 +72,6 @@ function set_sidebar() {
 			console.log("LOADING SIDEBAR");
 			//code to insert sidebar into webpage
 			load_sidebar();
-			
 		}else{
 			console.log("REMOVING SIDEBAR");
 			//code to remove sidebar from webpage
@@ -93,7 +106,6 @@ function load_sidebar() {
 	var div = document.createElement("div");
 	div.innerHTML = '<iframe id="'+iframeId+'" src="'+chrome.extension.getURL(sidebarFILE)+'" frameborder="0" allowtransparency="false" '+'style="position: fixed; overflow:hidden; width: '+WIDTH+';border:none;z-index: 2147483647; height: 100%; top: 0px; right: 0px; bottom: 0px; background-color: black;"></iframe>';
 	html.appendChild(div.firstChild);
-	
 }
 
 function remove_sidebar() {
